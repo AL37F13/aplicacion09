@@ -1,6 +1,16 @@
 // JavaScript Document
 $(document).ready(function(e) {
-document.addEventListener("deviceready",function(){
+document.addEventListener("deviceready",function(){ 
+function cargarnombrejugador ()
+{
+	basedatos.transaction(function(ejecutar){
+		var sql="SELECT NombreUsuario FROM Usuario";
+		ejecutar.executeSql(sql,undefined,function(ejecutar,resultado){
+		var datosJugador =resultado.row.item(0);
+		$('#jugador').text(datosJugador.NombreUsuario);
+		});
+	});
+}
 	var basedatos=window.sqlitePlugin.openDatabase({name: "coloresBD.db",createFromLocation:1});
 	audio=window.plugins.LowLatencyAudio;
 	audio.preloadFX('B1', 'audio/C.mp3',function(){},function(msg){alert("error "+msg);});
