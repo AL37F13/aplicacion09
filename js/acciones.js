@@ -30,13 +30,13 @@ function cargarnombrejugador ()
 		var alto=(pantalla-encabezado-pie)/2;
 		$('.cuadro').height( alto);	
 	});
-	$('.cuadro').on('vmousedown',function (){
-		$('#pantalla').append(quien($(this).attr('id')));
-		$(this).addClass('pulsado');
-	});
-	$('.cuadro').on('vmouseup',function (){
-		$(this).removeClass('pulsado');
-	});
+	//$('.cuadro').on('vmousedown',function (){
+		//$('#pantalla').append(quien($(this).attr('id')));
+		//$(this).addClass('pulsado');
+	//});
+	//$('.cuadro').on('vmouseup',function (){
+		//$(this).removeClass('pulsado');
+	//});
 	function quien (q)
 	{
 		audio.play(q);
@@ -51,6 +51,14 @@ function cargarnombrejugador ()
 		consulta.executeSql("UPDATE Usuario SET NombreUsuario =? WHERE ClaveUsuario='1';",[nuevonombre]);
 		});
 		cargarnombrejugador()
+	function flash (boton)
+	{
+	boton.stop().animate({opacity:'0.5'},{
+		duration:80, complete:function(){
+		boton.stop().animate({opacity:'1'},200);
+	}
+	});
+	}
 	});
 }); 
 });
